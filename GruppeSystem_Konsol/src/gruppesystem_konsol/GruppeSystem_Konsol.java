@@ -33,6 +33,10 @@ public class GruppeSystem_Konsol {
             }
         }
         System.out.println("Du er inde nu");
+        
+        //mere konsol ting
+        
+        
     }
     
 public static boolean validate(String studienummer, String kodeord) throws MalformedURLException {
