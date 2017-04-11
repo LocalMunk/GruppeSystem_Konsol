@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dataklasser;
-
-import brugerautorisation.data.Bruger;
-import java.util.ArrayList;
+package gruppesystem;
 
 /**
  *
  * @author frederik
  */
-public class Opgave extends Event{
+public class GruppeSysImpl implements IGruppeSys{
     
-    private int prioritet;
-    
-            
 }

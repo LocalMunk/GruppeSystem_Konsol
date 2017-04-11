@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dataklasser;
+package gruppesystem;
 
 /**
  *
  * @author frederik
  */
-public class Aftale extends Event{
-    
-    private String tidspunkt;
-    private String lokation;
+public interface IGruppeSys {
     
 }

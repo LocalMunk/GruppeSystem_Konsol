@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dataklasser;
+package DTO;
 
 import brugerautorisation.data.Bruger;
 import java.util.ArrayList;
@@ -12,11 +12,26 @@ import java.util.ArrayList;
  *
  * @author frederik
  */
-public abstract class Event {
+public class Gruppe {
     
     private String id;
     private String navn;
-    private String beskrivelse;
-    private ArrayList<Bruger> ansvarlige;
+    private ArrayList <Bruger> brugere;
+    private Projekt projekt;
+ 
+    public Gruppe(String navn) {
+    
+        this.navn = navn;
+        
+    }
+    
+    public ArrayList<Gruppe> hentGrupper(Bruger b) {
+        
+        
+        
+        return null;
+    }
+    
+    
     
 }

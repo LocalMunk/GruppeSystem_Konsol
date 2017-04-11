@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gruppesystem_konsol;
+package gruppesystem;
 
 import brugerautorisation.transport.soap.Brugeradmin;
 import java.util.Scanner;
@@ -13,12 +13,13 @@ import java.net.URL;
 import javax.xml.namespace.QName;
 public class GruppeSystem_Konsol {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws MalformedURLException {
+    GruppeSysImpl grp = new GruppeSysImpl();
+            
+    public void start() throws MalformedURLException {
         
+        ;
         Scanner scanner = new Scanner(System.in);
+        int num;
         
         System.out.println("Du skal logge ind før, at du kan spille Galgeleg");
         while (true) {
@@ -34,7 +35,20 @@ public class GruppeSystem_Konsol {
         }
         System.out.println("Du er inde nu");
         
-        //mere konsol ting
+        menu();
+        num = scanner.nextInt();
+        
+        switch (num) {
+            case 1:
+                   System.out.println("Her er alle dine grupper: " + grp.toString()); 
+        }
+            
+        
+        
+        
+        
+        
+        
         
         
     }
@@ -56,7 +70,20 @@ public static boolean validate(String studienummer, String kodeord) throws Malfo
         }
 
         return false;
-    }
+}
+
+public void menu(){
+    
+    System.out.println("Velkommen GruppeSystem");
+    System.out.println("1\t Se grupper");
+    System.out.println("2\t Se aftaler/opgaver");
+    System.out.println("3\t Log ud");
+    System.out.print("Skriv 1-3: ");
+    
+    
+    
+}
+
 }
     
 

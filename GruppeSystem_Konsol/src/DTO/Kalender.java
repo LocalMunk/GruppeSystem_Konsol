@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dataklasser;
+package DTO;
 
-import brugerautorisation.data.Bruger;
 import java.util.ArrayList;
 
 /**
  *
  * @author frederik
  */
-public class Gruppe {
+public class Kalender {
     
     private String id;
-    private String navn;
-    private ArrayList <Bruger> brugere;
-    private Projekt projekt;
+    private ArrayList<Aftale> aftaler;
+    private ArrayList<Opgave> opgaver;
+    
     
 }

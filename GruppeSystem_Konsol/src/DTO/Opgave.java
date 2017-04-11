@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dataklasser;
+package DTO;
 
+import brugerautorisation.data.Bruger;
 import java.util.ArrayList;
 
 /**
  *
  * @author frederik
  */
-public class Kalender {
+public class Opgave{
     
+    private int prioritet;
     private String id;
-    private ArrayList<Event> events;
-    
-    
+    private String navn;
+    private String beskrivelse;
+    private ArrayList<Bruger> ansvarlige;
+            
 }
