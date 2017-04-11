@@ -18,19 +18,46 @@ public class Gruppe {
     private String navn;
     private ArrayList <Bruger> brugere;
     private Projekt projekt;
- 
-    public Gruppe(String navn) {
-    
+
+    public Gruppe(String id, String navn, ArrayList<Bruger> brugere, Projekt projekt) {
+        this.id = id;
         this.navn = navn;
-        
+        this.brugere = brugere;
+        this.projekt = projekt;
     }
-    
-    public ArrayList<Gruppe> hentGrupper(Bruger b) {
-        
-        
-        
-        return null;
+
+    public String getId() {
+        return id;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNavn() {
+        return navn;
+    }
+
+    public void setNavn(String navn) {
+        this.navn = navn;
+    }
+
+    public ArrayList<Bruger> getBrugere() {
+        return brugere;
+    }
+
+    public void setBrugere(ArrayList<Bruger> brugere) {
+        this.brugere = brugere;
+    }
+
+    public Projekt getProjekt() {
+        return projekt;
+    }
+
+    public void setProjekt(Projekt projekt) {
+        this.projekt = projekt;
+    }
+ 
     
     
     
