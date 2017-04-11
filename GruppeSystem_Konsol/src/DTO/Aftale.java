@@ -12,24 +12,24 @@ import java.util.ArrayList;
  *
  * @author frederik
  */
-public class Aftale{
-    
+public class Aftale {
+
     private String tidspunkt;
     private String lokation;
     private String id;
     private String navn;
     private String beskrivelse;
     private ArrayList<Bruger> ansvarlige;
-    
+
     public Aftale(String tidspunkt, String lokation, String id, String navn, String beskrivelse, ArrayList<Bruger> ansvarlige) {
-    
+
         this.tidspunkt = tidspunkt;
         this.lokation = lokation;
         this.id = id;
-        this. navn = navn;
+        this.navn = navn;
         this.beskrivelse = beskrivelse;
         this.ansvarlige = ansvarlige;
-        
+
     }
 
     public String getTidspunkt() {
@@ -79,7 +79,5 @@ public class Aftale{
     public void setAnsvarlige(ArrayList<Bruger> ansvarlige) {
         this.ansvarlige = ansvarlige;
     }
-    
-    
-    
+
 }

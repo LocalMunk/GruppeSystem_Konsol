@@ -9,7 +9,7 @@ package DTO;
  * @author frederik
  */
 public class Projekt {
-    
+
     private String id;
     private String navn;
     private Kalender kalender;
@@ -43,7 +43,5 @@ public class Projekt {
     public void setKalender(Kalender kalender) {
         this.kalender = kalender;
     }
-    
-    
-    
+
 }

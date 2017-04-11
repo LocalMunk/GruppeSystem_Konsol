@@ -13,10 +13,10 @@ import java.util.ArrayList;
  * @author frederik
  */
 public class Gruppe {
-    
+
     private String id;
     private String navn;
-    private ArrayList <Bruger> brugere;
+    private ArrayList<Bruger> brugere;
     private Projekt projekt;
 
     public Gruppe(String id, String navn, ArrayList<Bruger> brugere, Projekt projekt) {
@@ -57,8 +57,5 @@ public class Gruppe {
     public void setProjekt(Projekt projekt) {
         this.projekt = projekt;
     }
- 
-    
-    
-    
+
 }

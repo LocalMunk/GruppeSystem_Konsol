@@ -12,17 +12,15 @@ import javax.xml.ws.Endpoint;
  * @author frederik
  */
 public class Server {
-    
-    public static void main (String[] args) {
-        
-        
+
+    public static void main(String[] args) {
+
         IGruppeSys grp = new GruppeSysImpl();
-        
+
         Endpoint.publish("http://ubuntu4.javabog.dk:9902/gruppesystem_osteholdet", grp);
-           
-	System.out.println("Galgelegtjeneste publiceret min ven.");
-        
+
+        System.out.println("Galgelegtjeneste publiceret min ven.");
+
     }
-    
-    
+
 }

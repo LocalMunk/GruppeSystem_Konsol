@@ -12,8 +12,8 @@ import java.util.ArrayList;
  *
  * @author frederik
  */
-public class Opgave{
-    
+public class Opgave {
+
     private int prioritet;
     private String id;
     private String navn;
@@ -67,8 +67,5 @@ public class Opgave{
     public void setAnsvarlige(ArrayList<Bruger> ansvarlige) {
         this.ansvarlige = ansvarlige;
     }
-           
-    
-    
-    
+
 }
