@@ -5,10 +5,18 @@
  */
 package dataklasser;
 
+import brugerautorisation.data.Bruger;
+import java.util.ArrayList;
+
 /**
  *
  * @author frederik
  */
 public class Gruppe {
+    
+    private String id;
+    private String navn;
+    private ArrayList <Bruger> brugere;
+    private Projekt projekt;
     
 }

@@ -5,10 +5,16 @@
  */
 package dataklasser;
 
+import brugerautorisation.data.Bruger;
+import java.util.ArrayList;
+
 /**
  *
  * @author frederik
  */
-public class Opgave {
+public class Opgave extends Event{
     
+    private int prioritet;
+    
+            
 }

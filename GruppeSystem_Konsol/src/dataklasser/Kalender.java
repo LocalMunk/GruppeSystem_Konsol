@@ -5,10 +5,16 @@
  */
 package dataklasser;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author frederik
  */
 public class Kalender {
+    
+    private String id;
+    private ArrayList<Event> events;
+    
     
 }

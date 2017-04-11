@@ -5,10 +5,18 @@
  */
 package dataklasser;
 
+import brugerautorisation.data.Bruger;
+import java.util.ArrayList;
+
 /**
  *
  * @author frederik
  */
-public class Event {
+public abstract class Event {
+    
+    private String id;
+    private String navn;
+    private String beskrivelse;
+    private ArrayList<Bruger> ansvarlige;
     
 }

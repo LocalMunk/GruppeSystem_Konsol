@@ -11,4 +11,8 @@ package dataklasser;
  */
 public class Projekt {
     
+    private String id;
+    private String navn;
+    private Kalender kalender;
+    
 }

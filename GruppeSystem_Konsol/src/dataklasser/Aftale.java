@@ -9,6 +9,9 @@ package dataklasser;
  *
  * @author frederik
  */
-public class Aftale {
+public class Aftale extends Event{
+    
+    private String tidspunkt;
+    private String lokation;
     
 }
