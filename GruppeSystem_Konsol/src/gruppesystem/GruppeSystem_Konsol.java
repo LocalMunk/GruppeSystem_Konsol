@@ -17,7 +17,12 @@ public class GruppeSystem_Konsol {
     GruppeSysImpl grp = new GruppeSysImpl();
 
     public void start() throws MalformedURLException {
-        ;
+        
+        //Opdater links
+        URL url = new URL("http://javabog.dk:9901/brugeradmin?wsdl");
+        QName qname = new QName("http://soap.transport.brugerautorisation/", "BrugeradminImplService");
+        Service service = Service.create(url, qname);
+        
         Scanner scanner = new Scanner(System.in);
         int num;
 
