@@ -5,7 +5,6 @@
  */
 package DTO;
 
-import brugerautorisation.data.Bruger;
 import java.util.ArrayList;
 
 /**

@@ -5,42 +5,34 @@
  */
 package DTO;
 
-import brugerautorisation.data.Bruger;
 import java.util.ArrayList;
 
 /**
  *
- * @author frederik
+ * @author elbozo
  */
 public class Opgave {
 
-    private int prioritet;
-    private String id;
+
+    private int id;
     private String navn;
     private String beskrivelse;
     private ArrayList<Bruger> ansvarlige;
 
-    public Opgave(int prioritet, String id, String navn, String beskrivelse, ArrayList<Bruger> ansvarlige) {
-        this.prioritet = prioritet;
+    public Opgave(int id, String navn, String beskrivelse) {
         this.id = id;
         this.navn = navn;
         this.beskrivelse = beskrivelse;
-        this.ansvarlige = ansvarlige;
-    }
+       }
 
-    public int getPrioritet() {
-        return prioritet;
-    }
+ 
+  
 
-    public void setPrioritet(int prioritet) {
-        this.prioritet = prioritet;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

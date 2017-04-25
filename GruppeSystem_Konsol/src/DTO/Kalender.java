@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author frederik
+ * @author elbosso
  */
 public class Kalender {
     

@@ -5,7 +5,7 @@
  */
 package DTO;
 
-import brugerautorisation.data.Bruger;
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -14,29 +14,28 @@ import java.util.ArrayList;
  */
 public class Aftale {
 
-    private String tidspunkt;
+    private Date tidspunkt;
     private String lokation;
-    private String id;
+    private int id;
     private String navn;
     private String beskrivelse;
-    private ArrayList<Bruger> ansvarlige;
+    private ArrayList<Bruger> ansvarlige;   
 
-    public Aftale(String tidspunkt, String lokation, String id, String navn, String beskrivelse, ArrayList<Bruger> ansvarlige) {
+    public Aftale(int id, String navn, String beskrivelse, Date tidspunkt, String lokation) {
 
         this.tidspunkt = tidspunkt;
         this.lokation = lokation;
         this.id = id;
         this.navn = navn;
         this.beskrivelse = beskrivelse;
-        this.ansvarlige = ansvarlige;
 
     }
 
-    public String getTidspunkt() {
+    public Date getTidspunkt() {
         return tidspunkt;
     }
 
-    public void setTidspunkt(String tidspunkt) {
+    public void setTidspunkt(Date tidspunkt) {
         this.tidspunkt = tidspunkt;
     }
 
@@ -48,11 +47,11 @@ public class Aftale {
         this.lokation = lokation;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -5,26 +5,32 @@
  */
 package DTO;
 
-/*
- * @author frederik
+/**
+ *
+ * @author elbosso
  */
 public class Projekt {
 
-    private String id;
+    private int id;
     private String navn;
+    private String desc;
+    private String gruppeNavn;
+    private int adminid;
     private Kalender kalender;
 
-    public Projekt(String id, String navn, Kalender kalender) {
+    public Projekt(int id, String navn, String desc, String gruppeNavn, int adminid) {
         this.id = id;
         this.navn = navn;
-        this.kalender = kalender;
+        this.desc = desc;
+        this.gruppeNavn = gruppeNavn;
+        this.adminid = adminid;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -34,6 +40,30 @@ public class Projekt {
 
     public void setNavn(String navn) {
         this.navn = navn;
+    }
+    
+    public String getDesc() {
+    	return desc;
+    }
+    
+    public void setDesc(String desc) {
+    	this.desc = desc;
+    }
+    
+    public String getGruppeNavn() {
+    	return gruppeNavn;
+    }
+    
+    public void setGruppeNavn(String gruppeNavn) {
+    	this.gruppeNavn = gruppeNavn;
+    }
+    
+    public int getAdminid() {
+    	return adminid;
+    }
+    
+    public void setAdminid(int adminid) {
+    	this.adminid = adminid;
     }
 
     public Kalender getKalender() {

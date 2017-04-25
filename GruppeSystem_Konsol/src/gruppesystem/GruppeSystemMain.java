@@ -5,6 +5,7 @@
  */
 package gruppesystem;
 
+import DALException.DALException;
 import java.net.MalformedURLException;
 
 /**
@@ -13,7 +14,7 @@ import java.net.MalformedURLException;
  */
 public class GruppeSystemMain {
     
-    public static void main (String[] args) throws MalformedURLException {
+    public static void main (String[] args) throws MalformedURLException, DALException {
         
         new GruppeSystem_Konsol().start();
     
