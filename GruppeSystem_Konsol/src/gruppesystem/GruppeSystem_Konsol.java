@@ -24,13 +24,18 @@ public class GruppeSystem_Konsol {
     public void start() throws MalformedURLException, DALException {
 
         //Opdater links
-        URL url = new URL("http://ubuntu4.javabog.dk:54694");
-        QName qname = new QName("http://Server/", "GruppeSysImplService");
+        URL url = new URL("http://[::]:8080/server?wsdl");
+        QName qname = new QName("http://gruppesystem/", "ServerImplService");
         Service service = Service.create(url, qname);
         ServerInterface ISrv = service.getPort(ServerInterface.class);
 
         Scanner scanner = new Scanner(System.in);
+        System.out.println("service:" + service.getServiceName());
 
+                System.out.println(ISrv.fedtManSpa());
+      
+       
+        
         System.out.println("Du skal logge ind");
         while (true) {
             while (!loggedIn) {
@@ -42,21 +47,42 @@ public class GruppeSystem_Konsol {
 
                 if (validate(bruger, password)) {
                     studienummer = Integer.parseInt(bruger.substring(1));
+                    
                 }
             }
             System.out.println("Du er inde nu");
-
+            
+            
             menu();
             num = scanner.nextInt();
 
             switch (num) {
+       
                 case 1:
-                    System.out.println("Her er alle dine projekter: " + ISrv.getProjekter(studienummer));
+                      List<Projekt> list = null;
+                     System.out.println(studienummer); 
+                      try {
+                     list = ISrv.getProjekter(studienummer);
+                       
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("listepik");
+                    }  
+                     
+                     
+                    try {
+                        //TODO loop
+                       System.out.println("Her er alle dine projekter: " + ISrv.getProjekter(studienummer).get(0).getNavn()); 
+                    } catch (Exception e) {
+                        System.out.println("findes ingen projekter");
+                    }
+                    
                     break;
                 case 2:
+                    System.out.println(studienummer);
                     System.out.println("Her er alle dine aftaler & opgaver");
-                    List<Projekt> list = ISrv.getProjekter(studienummer);
-                    for (Projekt p : list) {
+                    List<Projekt> list2 = ISrv.getProjekter(studienummer);
+                                       for (Projekt p : list2) {
                         System.out.println(p.getNavn());
                         System.out.println("Opgaver: " + ISrv.getOpgaver(p.getId(), studienummer));
                         System.out.println("Aftaler: " + ISrv.getAftaler(p.getId(), studienummer));

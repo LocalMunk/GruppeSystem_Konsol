@@ -1,7 +1,7 @@
 package brugerautorisation.data;
 import java.io.*;
 import java.util.HashMap;
-public class Bruger implements Serializable
+public class BrugerJa implements Serializable
 {
 	// Vigtigt: Sæt versionsnummer så objekt kan læses selvom klassen er ændret!
 	private static final long serialVersionUID = 12345; // bare et eller andet nr.

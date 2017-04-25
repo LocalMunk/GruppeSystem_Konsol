@@ -6,7 +6,7 @@
 package brugerautorisation.server;
 
 import brugerautorisation.data.Diverse;
-import brugerautorisation.data.Bruger;
+import brugerautorisation.data.BrugerJa;
 import brugerautorisation.server.Serialisering;
 import java.io.IOException;
 import java.io.Serializable;
@@ -31,8 +31,8 @@ public class Brugerdatabase implements Serializable {
 	private static final Path SIKKERHEDSKOPI = Paths.get("sikkerhedskopi");
 	private static long filSidstGemt;
 
-	public ArrayList<Bruger> brugere = new ArrayList<>();
-	public transient HashMap<String,Bruger> brugernavnTilBruger = new HashMap<>();
+	public ArrayList<BrugerJa> brugere = new ArrayList<>();
+	public transient HashMap<String,BrugerJa> brugernavnTilBruger = new HashMap<>();
 
 	public static Brugerdatabase getInstans()
 	{
@@ -58,7 +58,7 @@ public class Brugerdatabase implements Serializable {
 						+ "https://cn.inside.dtu.dk/cnnet/participants/default.aspx?ElementID=535237&sort=fname&order=ascending&pos=0&lastPos=0&lastDisplay=listWith&cache=false&display=listWith&groupby=rights&interval=10000&search="
 						+ "\nog gemme indholdet i filen "+path.toAbsolutePath());
 				System.err.println("\nDer oprettes nu en enkelt bruger du kan teste med\n(tryk Ctrl-C for at annullere)");
-				Bruger b = new Bruger();
+				BrugerJa b = new BrugerJa();
 				System.err.print("Brugernavn: "); b.brugernavn = scanner.nextLine();
 				System.err.print("Adgangskode: "); b.adgangskode = scanner.nextLine();
 				System.err.print("Fornavn: "); b.fornavn = scanner.nextLine();
@@ -69,7 +69,7 @@ public class Brugerdatabase implements Serializable {
 			}
 		}
 		// Gendan de transiente felter
-		for (Bruger b : instans.brugere) {
+		for (BrugerJa b : instans.brugere) {
 			instans.brugernavnTilBruger.put(b.brugernavn, b);
 		}
 		return instans;
@@ -77,7 +77,7 @@ public class Brugerdatabase implements Serializable {
 
 
 
-	public static void indlæsDeltagerlisteFraCampusnetHtml(String data, ArrayList<Bruger> brugere) {
+	public static void indlæsDeltagerlisteFraCampusnetHtml(String data, ArrayList<BrugerJa> brugere) {
 		//System.out.println("data="+data);
 		for (String tr : data.split("<tr")) {
 			if (tr.contains("context_header")) continue;
@@ -96,7 +96,7 @@ public class Brugerdatabase implements Serializable {
 			4 td=><p><a href="mailto:s140241@student.dtu.dk" class="link">s140241@student.dtu.dk</a><br /><br /></p></td>
 			5 td=>STADS-tilmeldt<br /><br /><br />diploming. IT elektronik</td></tr>
 			*/
-			Bruger b = new Bruger();
+			BrugerJa b = new BrugerJa();
 			b.campusnetId = td[1].split("id=")[1].split("\"")[0].split("&")[0];
 			b.ekstraFelter.put("webside", td[1].split("href=\"")[1].split("\"")[0]);
 			b.fornavn = td[2].split("class=\"link\">")[1].split("<")[0];
@@ -119,7 +119,7 @@ public class Brugerdatabase implements Serializable {
 
 
 
-	public static void indlæsDeltagerlisteFraCampusnetHtml2(String data, ArrayList<Bruger> brugere) {
+	public static void indlæsDeltagerlisteFraCampusnetHtml2(String data, ArrayList<BrugerJa> brugere) {
 		//System.out.println("data="+data);
 		for (String tr : data.split("<div class=\"ui-participant\">")) {
 			String td[] = tr.split("<div class=\"ui-participant-");
@@ -224,7 +224,7 @@ map={img=, name=Amer Ali, email=s145224@student.dtu.dk s145224@student.dtu.dk, a
 map={img=, name=Ahmad Mohammad Hassan Almajedi, email=s153317@student.dtu.dk s153317@student.dtu.dk, additional user-information=s153317, informationbox=id="participantinformation220040">, placeholder=, Brugernavn=s153317, Email=s153317@student.dtu.dk, Uddannelse=diploming. Softwaretek.}
 
 			*/
-			Bruger b = new Bruger();
+			BrugerJa b = new BrugerJa();
 			b.fornavn = map.get("name");
       int n = b.fornavn.indexOf(" ");
 			b.efternavn = b.fornavn.substring(n+1);
@@ -265,8 +265,8 @@ map={img=, name=Ahmad Mohammad Hassan Almajedi, email=s153317@student.dtu.dk s15
 		}
 	}
 
-	public Bruger hentBruger(String brugernavn, String adgangskode) {
-		Bruger b = brugernavnTilBruger.get(brugernavn);
+	public BrugerJa hentBruger(String brugernavn, String adgangskode) {
+		BrugerJa b = brugernavnTilBruger.get(brugernavn);
 		System.out.println("hentBruger "+brugernavn+" gav "+b);
 		if (b!=null) {
 			if (b.adgangskode.equals(adgangskode)) {

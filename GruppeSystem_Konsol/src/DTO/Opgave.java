@@ -24,6 +24,9 @@ public class Opgave {
         this.navn = navn;
         this.beskrivelse = beskrivelse;
        }
+    public Opgave(){
+        
+    }
 
  
   
