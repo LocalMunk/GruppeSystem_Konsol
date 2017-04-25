@@ -30,12 +30,8 @@ public class GruppeSystem_Konsol {
         ServerInterface ISrv = service.getPort(ServerInterface.class);
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("service:" + service.getServiceName());
+        System.out.println("service: " + service.getServiceName());
 
-                System.out.println(ISrv.fedtManSpa());
-      
-       
-        
         System.out.println("Du skal logge ind");
         while (true) {
             while (!loggedIn) {
@@ -50,8 +46,6 @@ public class GruppeSystem_Konsol {
                     
                 }
             }
-            System.out.println("Du er inde nu");
-            
             
             menu();
             num = scanner.nextInt();
@@ -66,13 +60,12 @@ public class GruppeSystem_Konsol {
                        
                     } catch (Exception e) {
                         e.printStackTrace();
-                        System.out.println("listepik");
                     }  
                      
                      
                     try {
                         //TODO loop
-                       System.out.println("Her er alle dine projekter: " + ISrv.getProjekter(studienummer).get(0).getNavn()); 
+                       System.out.println("Her er alle dine projekter: " + ISrv.getProjekter(studienummer)); 
                     } catch (Exception e) {
                         System.out.println("findes ingen projekter");
                     }
@@ -115,13 +108,13 @@ public class GruppeSystem_Konsol {
     }
 
     public void menu() {
-
+        System.out.println("#################################################");
         System.out.println("Velkommen GruppeSystem");
         System.out.println("1 Se grupper");
         System.out.println("2 Se aftaler & opgaver");
         System.out.println("3 Log ud");
         System.out.print("Skriv 1-3: ");
-
+        System.out.println("");
     }
 
 }

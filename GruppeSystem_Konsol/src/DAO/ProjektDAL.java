@@ -42,7 +42,6 @@ public class ProjektDAL {
 			}
 		}
 		catch (SQLException e) { throw new DALException(e); }
-                System.out.println("ddddddddddddddddddddd" + list);
 		return list;
     }
 	
