@@ -14,13 +14,11 @@ import java.net.MalformedURLException;
  * @author frederik
  */
 public class GruppeSystemMain {
-    
-    public static void main (String[] args) throws MalformedURLException, DALException {
-        
+
+    public static void main(String[] args) throws MalformedURLException, DALException {
+
         new GruppeSystem_Konsol().start();
-    
+
     }
-    
-    
-    
+
 }
