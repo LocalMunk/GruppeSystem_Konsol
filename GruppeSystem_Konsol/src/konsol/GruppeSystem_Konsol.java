@@ -60,17 +60,14 @@ public class GruppeSystem_Konsol {
             num = scanner.nextInt();
 
             switch (num) {
-
                 case 1:
                     List<Projekt> list = null;
-                    System.out.println(studienummer);
                     try {
                         list = ISrv.getProjekter(studienummer);
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                     try {
                         //TODO loop
                         System.out.println("Her er alle dine projekter: ");
@@ -82,7 +79,6 @@ public class GruppeSystem_Konsol {
                         //e.printStackTrace();
                         System.out.println("findes ingen projekter");
                     }
-
                     break;
                 case 2:
                     System.out.println(studienummer);
