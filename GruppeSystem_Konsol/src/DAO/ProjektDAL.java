@@ -14,66 +14,65 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  *
  * @author elbosso
  */
 public class ProjektDAL {
-	public Projekt getProjekt(int id) throws DALException{
+
+    public Projekt getProjekt(int id) throws DALException {
         ResultSet rs = Connector.doQuery("SELECT * FROM projekt WHERE id = ?", id);
         try {
-            if (!rs.first())
+            if (!rs.first()) {
                 throw new DALException("projektet" + id + "findes ikke");
-            
+            }
+
             return new Projekt(rs.getInt("id"), rs.getString("projectname"), rs.getString("projectdesc"), rs.getString("groupname"), rs.getInt("adminid"));
-	}catch (SQLException e){
+        } catch (SQLException e) {
             throw new DALException(e);
         }
     }
-	
-	public List<Projekt> getProjektList(int personid) throws DALException{
+
+    public List<Projekt> getProjektList(int personid) throws DALException {
         List<Projekt> list = new ArrayList<Projekt>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM projekt WHERE id = (SELECT groupid FROM medlemmer WHERE brugid = ?)", personid);
-                try{
-                while (rs.next())   
-			{
-				list.add(new Projekt(rs.getInt("id"), rs.getString("projectname"), rs.getString("projectdesc"), rs.getString("groupname"), rs.getInt("adminid")));
-			}
-		}
-		catch (SQLException e) { throw new DALException(e); }
-		return list;
+        ResultSet rs = Connector.doQuery("SELECT * FROM projekt LEFT JOIN medlemmer ON medlemmer.groupid = projekt.id AND medlemmer.brugid = ? WHERE medlemmer.id IS NOT NULL", personid);
+        try {
+            while (rs.next()) {
+                list.add(new Projekt(rs.getInt("id"), rs.getString("projectname"), rs.getString("projectdesc"), rs.getString("groupname"), rs.getInt("adminid")));
+            }
+        } catch (SQLException e) {
+            throw new DALException(e);
+        }
+        return list;
     }
-	
-	public void createProjekt(Projekt a, int personid) throws DALException{
+
+    public void createProjekt(Projekt a, int personid) throws DALException {
         {
-		Connector.doUpdate
-		(
-			"INSERT INTO projekt(id, projectname, projectdesc, groupname, adminid) VALUES (?,?,?,?,?)",
-				a.getId(), a.getNavn(), a.getDesc(), a.getGruppeNavn(), a.getAdminid()
-				);
-	}
-        
+            Connector.doUpdate(
+                    "INSERT INTO projekt(id, projectname, projectdesc, groupname, adminid) VALUES (?,?,?,?,?)",
+                    a.getId(), a.getNavn(), a.getDesc(), a.getGruppeNavn(), a.getAdminid()
+            );
+        }
+
     }
-	
-	public void updateProjekt(Projekt a, int personid) throws DALException{
-        
+
+    public void updateProjekt(Projekt a, int personid) throws DALException {
+
         {
-		Connector.doUpdate(
-				"UPDATE projekt SET projectname = ?,  projectdesc = ?, groupname = ?, adminid = ? WHERE id = ?",
-				a.getNavn(), a.getDesc(), a.getGruppeNavn(), a.getAdminid(), a.getId()
-				);
-	} 
+            Connector.doUpdate(
+                    "UPDATE projekt SET projectname = ?,  projectdesc = ?, groupname = ?, adminid = ? WHERE id = ?",
+                    a.getNavn(), a.getDesc(), a.getGruppeNavn(), a.getAdminid(), a.getId()
+            );
+        }
     }
-        
-        public void DeleteProjekt(Projekt a, int personid) throws DALException{
-        
+
+    public void DeleteProjekt(Projekt a, int personid) throws DALException {
+
         {
-		Connector.doUpdate(
-				"DELETE FROM projekt WHERE id = ?", a.getId()
-				
-				);
-	} 
+            Connector.doUpdate(
+                    "DELETE FROM projekt WHERE id = ?", a.getId()
+            );
+        }
     }
-    
+
 }
