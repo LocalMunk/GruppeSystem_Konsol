@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gruppesystem;
+package konsol;
 
+import konsol.ServerInterface;
 import DALException.DALException;
 import DTO.Aftale;
 import DTO.Opgave;
@@ -21,13 +22,13 @@ public class GruppeSystem_Konsol {
 
     private int num;
     private int studienummer;
-    private boolean loggedIn;
+    private boolean loggedIn, done = false;
 
     public void start() throws MalformedURLException, DALException {
 
         //Opdater links
         URL url = new URL("http://[::]:8080/server?wsdl");
-        QName qname = new QName("http://gruppesystem/", "ServerImplService");
+        QName qname = new QName("http://server/", "ServerImplService");
         Service service = Service.create(url, qname);
         ServerInterface ISrv = service.getPort(ServerInterface.class);
 
@@ -35,7 +36,7 @@ public class GruppeSystem_Konsol {
         System.out.println("service: " + service.getServiceName());
 
         System.out.println("Du skal logge ind");
-        while (true) {
+        while (!done) {
             while (!loggedIn) {
                 System.out.println("Indtast dit brugernavn (studie-nr.)");
                 String bruger = scanner.nextLine();
@@ -89,12 +90,14 @@ public class GruppeSystem_Konsol {
                     List<Projekt> list2 = ISrv.getProjekter(studienummer);
                     for (Projekt p : list2) {
                         System.out.println("- " + p.getNavn() + ":");
+                        //printer opgaver 
                         List<Opgave> listO = ISrv.getOpgaver(p.getId(), studienummer);
                         System.out.print("Opgaver: ");
                         for (Opgave o : listO) {
                             System.out.print(o.getNavn());
                         }
                         System.out.println("");
+                        //printer aftaler
                         List<Aftale> listA = ISrv.getAftaler(p.getId(), studienummer);
                         System.out.print("Aftaler: ");
                         for (Aftale a : listA) {
@@ -105,6 +108,7 @@ public class GruppeSystem_Konsol {
                     break;
                 case 3:
                     loggedIn = false;
+                    done = true;
             }
         }
     }
@@ -117,7 +121,6 @@ public class GruppeSystem_Konsol {
         System.out.println("2 Se aftaler & opgaver");
         System.out.println("3 Log ud");
         System.out.print("Skriv 1-3: ");
-        System.out.println("");
     }
 
 }

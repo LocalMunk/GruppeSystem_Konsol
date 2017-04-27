@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gruppesystem;
+package server;
 
+import konsol.ServerInterface;
 import DTO.Aftale;
 import DTO.Opgave;
 import DTO.Projekt;
@@ -27,7 +28,7 @@ import javax.xml.namespace.QName;
  *
  * @author elbosso
  */
-@WebService(endpointInterface = "gruppesystem.ServerInterface")
+@WebService(endpointInterface = "konsol.ServerInterface")
 
 public class ServerImpl implements ServerInterface{
     

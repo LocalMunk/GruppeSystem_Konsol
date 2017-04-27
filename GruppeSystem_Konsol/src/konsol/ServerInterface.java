@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gruppesystem;
+package konsol;
 
 import brugerautorisation.data.BrugerJa;
 import DTO.Projekt;

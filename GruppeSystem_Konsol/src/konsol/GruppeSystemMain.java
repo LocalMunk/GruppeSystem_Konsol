@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gruppesystem;
+package konsol;
 
+import konsol.GruppeSystem_Konsol;
 import DALException.DALException;
 import java.net.MalformedURLException;
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gruppesystem;
+package server;
 
 import DTO.Projekt;
 import static java.lang.System.in;
@@ -14,8 +14,8 @@ import javax.xml.ws.Endpoint;
 import brugerautorisation.transport.soap.BrugeradminImpl;
 import brugerautorisation.server.Brugerdatabase;
 import connector.Connector;
-import gruppesystem.ServerImpl;
-import gruppesystem.ServerInterface;
+import server.ServerImpl;
+import konsol.ServerInterface;
 import java.sql.SQLException;
 
 
