@@ -23,7 +23,7 @@ public class GruppeSystem_Konsol {
 
     private int num;
     private int studienummer;
-    private boolean loggedIn, done = false;
+    private boolean loggedIn, bool = false;
 
     public void start() throws MalformedURLException, DALException, IOException {
 
@@ -37,7 +37,8 @@ public class GruppeSystem_Konsol {
         System.out.println("service: " + service.getServiceName());
 
         System.out.println("Du skal logge ind");
-        while (!done) {
+
+        while (true) {
             while (!loggedIn) {
                 System.out.println("Indtast dit brugernavn (studie-nr.)");
                 String bruger = scanner.nextLine();
@@ -58,6 +59,7 @@ public class GruppeSystem_Konsol {
             }
 
             menu();
+
             num = scanner.nextInt();
 
             switch (num) {
@@ -66,11 +68,6 @@ public class GruppeSystem_Konsol {
                     try {
                         list = ISrv.getProjekter(studienummer);
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        //TODO loop
                         System.out.println("Her er alle dine projekter: ");
                         for (Projekt p : list) {
                             System.out.print(p.getNavn() + ", ");
@@ -103,21 +100,24 @@ public class GruppeSystem_Konsol {
                         System.out.println("");
                     }
                     break;
-                case 3: 
-                       Scanner scanner2 = new Scanner(System.in);
+                case 3:
+                    Scanner scanner2 = new Scanner(System.in);
                     System.out.print("Søg på drive: ");
-                       String search = scanner2.nextLine();
+                    String search = scanner2.nextLine();
                     List<String> results = ISrv.drive(search);
-                    for (String a : results) {
-                        System.out.println(a + ", ");
+                    if (results.isEmpty()) {
+                        System.out.println("Findes ikke");
+                    } else {
+                        for (String a : results) {
+                            System.out.println(a + ", ");
+                        }
                     }
                     break;
                 case 4:
                     loggedIn = false;
-                    done = true;
                     break;
-                default: 
-                    System.out.println("Skriv noget ordentlig fgt!");
+                default:
+                    System.out.println("Ugyldigt");
             }
         }
     }
