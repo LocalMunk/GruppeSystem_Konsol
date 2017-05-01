@@ -18,6 +18,8 @@ import DALException.DALException;
 
 import brugerautorisation.transport.soap.Brugeradmin;
 import brugerautorisation.data.BrugerJa;
+import drive.DriveTest;
+import java.io.IOException;
 import javax.xml.ws.Service;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,12 +38,14 @@ public class ServerImpl implements ServerInterface{
     BrugerDAL bruDal;
     OpgaveDAL opgDal;
     ProjektDAL proDal;
+    DriveTest drive;
     
     public ServerImpl(){
         aftDal = new AftaleDAL();
         bruDal = new BrugerDAL();
         opgDal = new OpgaveDAL();
         proDal = new ProjektDAL();
+        drive = new DriveTest();
     }
 
     @Override
@@ -117,5 +121,10 @@ public class ServerImpl implements ServerInterface{
     @Override
     public String fedtManSpa() {
        return "Spa";
+    }
+
+    @Override
+    public void drive(String search) throws IOException {
+        drive.drive(search);
     }
 }

@@ -11,6 +11,7 @@ import DTO.Aftale;
 import DTO.Opgave;
 import DTO.Projekt;
 import brugerautorisation.transport.soap.Brugeradmin;
+import java.io.IOException;
 import java.util.Scanner;
 import javax.xml.ws.Service;
 import java.net.MalformedURLException;
@@ -24,7 +25,7 @@ public class GruppeSystem_Konsol {
     private int studienummer;
     private boolean loggedIn, done = false;
 
-    public void start() throws MalformedURLException, DALException {
+    public void start() throws MalformedURLException, DALException, IOException {
 
         //Opdater links
         URL url = new URL("http://[::]:8080/server?wsdl");
@@ -90,21 +91,27 @@ public class GruppeSystem_Konsol {
                         List<Opgave> listO = ISrv.getOpgaver(p.getId(), studienummer);
                         System.out.print("Opgaver: ");
                         for (Opgave o : listO) {
-                            System.out.print(o.getNavn());
+                            System.out.print(o.getNavn() + ", ");
                         }
                         System.out.println("");
                         //printer aftaler
                         List<Aftale> listA = ISrv.getAftaler(p.getId(), studienummer);
                         System.out.print("Aftaler: ");
                         for (Aftale a : listA) {
-                            System.out.print(a.getNavn());
+                            System.out.print(a.getNavn() + ", ");
                         }
                         System.out.println("");
                     }
                     break;
-                case 3:
+                case 3: 
+                    ISrv.drive(scanner.nextLine());
+                    break;
+                case 4:
                     loggedIn = false;
                     done = true;
+                    break;
+                default: 
+                    System.out.println("Skriv noget ordentlig fgt!");
             }
         }
     }
@@ -115,8 +122,9 @@ public class GruppeSystem_Konsol {
         System.out.println("Velkommen GruppeSystem");
         System.out.println("1 Se grupper");
         System.out.println("2 Se aftaler & opgaver");
-        System.out.println("3 Log ud");
-        System.out.print("Skriv 1-3: ");
+        System.out.println("3 Brug drive");
+        System.out.println("4 Exit");
+        System.out.print("Skriv 1-4: ");
     }
 
 }

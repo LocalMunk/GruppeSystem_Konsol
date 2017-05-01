@@ -15,6 +15,7 @@ import javax.jws.WebService;
 import java.util.ArrayList;
 import java.util.List;
 import DALException.DALException;
+import java.io.IOException;
 
 /**
  *
@@ -33,6 +34,7 @@ public interface ServerInterface {
    @WebMethod public boolean DeleteAftale(Aftale a, int studienummer, int projektnummer)throws DALException;
    @WebMethod public boolean DeleteOpgave(Opgave a, int studienummer, int projektnummer)throws DALException;
    @WebMethod public boolean DeleteProjekt(Projekt a, int studienummer)throws DALException;
-     @WebMethod public String fedtManSpa();
+   @WebMethod public String fedtManSpa();
+   @WebMethod public void drive(String search)throws IOException;
    
 }
