@@ -124,7 +124,7 @@ public class ServerImpl implements ServerInterface{
     }
 
     @Override
-    public void drive(String search) throws IOException {
-        drive.drive(search);
+    public List<String> drive(String search) throws IOException {
+       return drive.drive(search);
     }
 }

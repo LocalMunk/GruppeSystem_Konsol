@@ -18,6 +18,7 @@ import com.google.api.services.drive.Drive;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -80,7 +81,8 @@ public class DriveTest {
     public static Credential authorize() throws IOException {
         // Load client secrets.
         InputStream in
-                = DriveTest.class.getResourceAsStream("/client_secret3.json");
+                = DriveTest.class.getResourceAsStream("/drive/client_secret3.json");
+        
         GoogleClientSecrets clientSecrets
                 = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
@@ -112,12 +114,12 @@ public class DriveTest {
                 .build();
     }
 
-    public void drive(String search) throws IOException {
+    public ArrayList<String> drive(String search) throws IOException {
         // Build a new authorized API client service.
         Drive service = getDriveService();
 
         String pageToken = null;
-
+        List<String> results = new ArrayList<String>();
         System.out.println("Søg på dit drive");
         String query = "name contains '" + search + "'";
            //String query= "fullText contains 'java' and 'frederik_buur@hotmail.com' in writers";
@@ -134,8 +136,11 @@ public class DriveTest {
             System.out.println("Files:");
             for (File file : files) {
                 System.out.println(file.getName());
-
+                results.add(file.getName());
+                
+                
             }
         }
+    return (ArrayList<String>) results;
     }
 }

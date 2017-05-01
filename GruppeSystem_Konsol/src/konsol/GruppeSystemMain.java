@@ -7,6 +7,7 @@ package konsol;
 
 import konsol.GruppeSystem_Konsol;
 import DALException.DALException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 /**
@@ -15,7 +16,7 @@ import java.net.MalformedURLException;
  */
 public class GruppeSystemMain {
 
-    public static void main(String[] args) throws MalformedURLException, DALException {
+    public static void main(String[] args) throws MalformedURLException, DALException, IOException {
 
         new GruppeSystem_Konsol().start();
 

@@ -104,7 +104,13 @@ public class GruppeSystem_Konsol {
                     }
                     break;
                 case 3: 
-                    ISrv.drive(scanner.nextLine());
+                       Scanner scanner2 = new Scanner(System.in);
+                    System.out.print("Søg på drive: ");
+                       String search = scanner2.nextLine();
+                    List<String> results = ISrv.drive(search);
+                    for (String a : results) {
+                        System.out.println(a + ", ");
+                    }
                     break;
                 case 4:
                     loggedIn = false;

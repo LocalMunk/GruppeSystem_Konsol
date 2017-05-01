@@ -35,6 +35,6 @@ public interface ServerInterface {
    @WebMethod public boolean DeleteOpgave(Opgave a, int studienummer, int projektnummer)throws DALException;
    @WebMethod public boolean DeleteProjekt(Projekt a, int studienummer)throws DALException;
    @WebMethod public String fedtManSpa();
-   @WebMethod public void drive(String search)throws IOException;
+   @WebMethod public List<String> drive(String search)throws IOException;
    
 }
