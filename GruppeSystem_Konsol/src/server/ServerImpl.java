@@ -5,7 +5,7 @@
  */
 package server;
 
-import konsol.ServerInterface;
+import transport.ServerInterface;
 import DTO.Aftale;
 import DTO.Opgave;
 import DTO.Projekt;

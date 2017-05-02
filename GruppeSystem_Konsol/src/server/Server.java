@@ -15,7 +15,7 @@ import brugerautorisation.transport.soap.BrugeradminImpl;
 import brugerautorisation.server.Brugerdatabase;
 import connector.Connector;
 import server.ServerImpl;
-import konsol.ServerInterface;
+import transport.ServerInterface;
 import java.sql.SQLException;
 
 

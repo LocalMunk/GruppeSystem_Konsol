@@ -5,7 +5,7 @@
  */
 package konsol;
 
-import konsol.ServerInterface;
+import transport.ServerInterface;
 import DALException.DALException;
 import DTO.Aftale;
 import DTO.Opgave;
