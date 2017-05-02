@@ -10,6 +10,7 @@ import DALException.DALException;
 import DTO.Aftale;
 import DTO.Opgave;
 import DTO.Projekt;
+import drive.DriveTest;
 import brugerautorisation.transport.soap.Brugeradmin;
 import java.io.IOException;
 import java.util.Scanner;
@@ -24,9 +25,11 @@ public class GruppeSystem_Konsol {
     private int num;
     private int studienummer;
     private boolean loggedIn, bool = false;
+    private DriveTest drive;
 
     public void start() throws MalformedURLException, DALException, IOException {
 
+        drive = new DriveTest();
         //Opdater links
         URL url = new URL("http://ubuntu4.javabog.dk:42072/server?wsdl");
         QName qname = new QName("http://server/", "ServerImplService");
@@ -104,7 +107,7 @@ public class GruppeSystem_Konsol {
                     Scanner scanner2 = new Scanner(System.in);
                     System.out.print("Søg på drive: ");
                     String search = scanner2.nextLine();
-                    List<String> results = ISrv.drive(search);
+                    List<String> results = drive.driveMain(search);
                     if (results.isEmpty()) {
                         System.out.println("Findes ikke");
                     } else {

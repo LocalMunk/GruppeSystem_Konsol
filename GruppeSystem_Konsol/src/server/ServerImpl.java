@@ -122,9 +122,4 @@ public class ServerImpl implements ServerInterface{
     public String fedtManSpa() {
        return "Spa";
     }
-
-    @Override
-    public List<String> drive(String search) throws IOException {
-       return drive.drive(search);
-    }
 }
