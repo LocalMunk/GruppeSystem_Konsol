@@ -28,7 +28,7 @@ public class GruppeSystem_Konsol {
     public void start() throws MalformedURLException, DALException, IOException {
 
         //Opdater links
-        URL url = new URL("http://[::]:8080/server?wsdl");
+        URL url = new URL("http://ubuntu4.javabog.dk:42072/server?wsdl");
         QName qname = new QName("http://server/", "ServerImplService");
         Service service = Service.create(url, qname);
         ServerInterface ISrv = service.getPort(ServerInterface.class);
@@ -59,7 +59,7 @@ public class GruppeSystem_Konsol {
             }
 
             menu();
-
+            try{
             num = scanner.nextInt();
 
             switch (num) {
@@ -118,6 +118,11 @@ public class GruppeSystem_Konsol {
                     break;
                 default:
                     System.out.println("Ugyldigt");
+            }
+            }catch(Exception e){
+                System.out.println("HEY KUN TAL TAK");
+                scanner.next();
+                
             }
         }
     }
