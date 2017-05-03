@@ -113,8 +113,8 @@ public class ServerImpl implements ServerInterface{
     }
 
     @Override
-    public boolean DeleteProjekt(Projekt a, int studienummer) throws DALException{
-        proDal.DeleteProjekt(a, studienummer);
+    public boolean DeleteProjekt(int projektId) throws DALException{
+        proDal.DeleteProjekt(projektId);
         return true;
     }
 

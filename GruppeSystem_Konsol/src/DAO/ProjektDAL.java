@@ -65,11 +65,11 @@ public class ProjektDAL {
         }
     }
 
-    public void DeleteProjekt(Projekt a, int personid) throws DALException {
+    public void DeleteProjekt(int projektId) throws DALException {
 
         {
             Connector.doUpdate(
-                    "DELETE FROM projekt WHERE id = ?", a.getId()
+                    "DELETE FROM projekt WHERE id = ?", projektId
             );
         }
     }

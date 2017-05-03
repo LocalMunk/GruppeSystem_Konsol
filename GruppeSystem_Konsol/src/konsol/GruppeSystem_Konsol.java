@@ -138,6 +138,11 @@ public class GruppeSystem_Konsol {
                     
                     break;
                 case 5:
+                    System.out.println("Skriv id på projekt du vil slette: ");
+                    int projektId = scanner.nextInt();
+                    ISrv.DeleteProjekt(projektId);
+                    break;
+                case 6:
                     loggedIn = false;
                     break;
                 default:
@@ -159,7 +164,8 @@ public class GruppeSystem_Konsol {
         System.out.println("2 Se aftaler & opgaver");
         System.out.println("3 Brug drive");
         System.out.println("4 Opret projekt");
-        System.out.println("5 Exit");
+        System.out.println("5 Slet projekt");
+        System.out.println("6 Exit");
         System.out.print("Skriv 1-5: ");
     }
 

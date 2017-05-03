@@ -33,7 +33,7 @@ public interface ServerInterface {
    @WebMethod public boolean CreateProjekt(Projekt a, int studienummer)throws DALException;
    @WebMethod public boolean DeleteAftale(Aftale a, int studienummer, int projektnummer)throws DALException;
    @WebMethod public boolean DeleteOpgave(Opgave a, int studienummer, int projektnummer)throws DALException;
-   @WebMethod public boolean DeleteProjekt(Projekt a, int studienummer)throws DALException;
+   @WebMethod public boolean DeleteProjekt(int projektId)throws DALException;
    @WebMethod public String fedtManSpa();
    
 }
