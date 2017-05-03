@@ -17,6 +17,7 @@ import java.util.Scanner;
 import javax.xml.ws.Service;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.InputMismatchException;
 import java.util.List;
 import javax.xml.namespace.QName;
 
@@ -139,8 +140,15 @@ public class GruppeSystem_Konsol {
                     break;
                 case 5:
                     System.out.println("Skriv id på projekt du vil slette: ");
-                    int projektId = scanner.nextInt();
-                    ISrv.DeleteProjekt(projektId);
+                    int projektId;
+                    
+                    try {
+                        projektId = scanner.nextInt();
+                        ISrv.DeleteProjekt(projektId);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("Ugyldigt id");
+                    }
                     break;
                 case 6:
                     loggedIn = false;
