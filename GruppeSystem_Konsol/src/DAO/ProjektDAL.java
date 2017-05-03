@@ -46,11 +46,11 @@ public class ProjektDAL {
         return list;
     }
 
-    public void createProjekt(Projekt a, int personid) throws DALException {
+    public void createProjekt(Projekt a) throws DALException {
         {
             Connector.doUpdate(
-                    "INSERT INTO projekt(id, projectname, projectdesc, groupname, adminid) VALUES (?,?,?,?,?)",
-                    a.getId(), a.getNavn(), a.getDesc(), a.getGruppeNavn(), a.getAdminid()
+                    "INSERT INTO projekt(id, projectname, projectdesc, groupname, adminid) VALUES (?,?,?,?)",
+                    a.getNavn(), a.getDesc(), a.getGruppeNavn(), a.getAdminid()
             );
         }
 

@@ -30,7 +30,7 @@ import javax.xml.namespace.QName;
  *
  * @author elbosso
  */
-@WebService(endpointInterface = "konsol.ServerInterface")
+@WebService(endpointInterface = "transport.ServerInterface")
 
 public class ServerImpl implements ServerInterface{
     
@@ -96,7 +96,7 @@ public class ServerImpl implements ServerInterface{
 
     @Override
     public boolean CreateProjekt(Projekt a, int studienummer) throws DALException{
-        proDal.createProjekt(a, studienummer);
+        proDal.createProjekt(a);
         return true;
     }
     
