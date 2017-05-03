@@ -49,7 +49,7 @@ public class ProjektDAL {
     public void createProjekt(Projekt a) throws DALException {
         {
             Connector.doUpdate(
-                    "INSERT INTO projekt(id, projectname, projectdesc, groupname, adminid) VALUES (?,?,?,?)",
+                    "INSERT INTO projekt(projectname, projectdesc, groupname, adminid) VALUES (?,?,?,?)",
                     a.getNavn(), a.getDesc(), a.getGruppeNavn(), a.getAdminid()
             );
         }

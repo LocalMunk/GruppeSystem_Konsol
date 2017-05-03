@@ -37,7 +37,7 @@ public class Server {
 
 		
     // Ipv6-addressen [::] svarer til Ipv4-adressen 0.0.0.0, der matcher alle maskinens netkort og 
-		Endpoint.publish("http://ubuntu4.javabog.dk:42072/server", serv);
+		Endpoint.publish("http://ubuntu4.javabog.dk:12345/server", serv);
            
 		System.out.println("Gruppesys publiceret min ven.");
           

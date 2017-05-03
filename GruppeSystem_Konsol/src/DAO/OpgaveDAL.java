@@ -49,7 +49,7 @@ public class OpgaveDAL {
     public void createOpgave(Opgave o, int projektid) throws DALException{
         {
 		Connector.doUpdate
-		("INSERT INTO opgave(id, opgname, opgdesc, projektid) VALUES (?,?,?)",
+		("INSERT INTO opgave(opgname, opgdesc, projektid) VALUES (?,?,?)",
 				o.getNavn(), o.getBeskrivelse(), projektid
 				);
 	}
