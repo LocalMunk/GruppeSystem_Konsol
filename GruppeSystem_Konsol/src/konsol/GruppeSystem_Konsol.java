@@ -31,7 +31,7 @@ public class GruppeSystem_Konsol {
 
         drive = new DriveTest();
         //Opdater links
-        URL url = new URL("http://ubuntu4.javabog.dk:42072/server?wsdl");
+        URL url = new URL("http://ubuntu4.javabog.dk:12345/server?wsdl");
         QName qname = new QName("http://server/", "ServerImplService");
         Service service = Service.create(url, qname);
         ServerInterface ISrv = service.getPort(ServerInterface.class);
@@ -117,6 +117,27 @@ public class GruppeSystem_Konsol {
                     }
                     break;
                 case 4:
+                    System.out.println("Projekt Navn: ");
+                    scanner.nextLine();
+                    String navn = scanner.nextLine();
+                    
+                    System.out.println("Beskrivelse: ");
+                    String beskrivelse = scanner.nextLine();
+                    
+                    System.out.println("Gruppe navn");
+                    String grpNavn = scanner.nextLine();
+                    
+                    System.out.println("det her: navn = " + navn + " besk = " 
+                            + beskrivelse + " grpnavn = " + grpNavn);
+                    try {
+                        ISrv.CreateProjekt(new Projekt(0, navn, beskrivelse, grpNavn, studienummer), studienummer);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("Kunne ikke oprette projekt");
+                    }
+                    
+                    break;
+                case 5:
                     loggedIn = false;
                     break;
                 default:
@@ -134,11 +155,12 @@ public class GruppeSystem_Konsol {
         System.out.println("");
         System.out.println("#################################################");
         System.out.println("Velkommen GruppeSystem");
-        System.out.println("1 Se grupper");
+        System.out.println("1 Se projekter");
         System.out.println("2 Se aftaler & opgaver");
         System.out.println("3 Brug drive");
-        System.out.println("4 Exit");
-        System.out.print("Skriv 1-4: ");
+        System.out.println("4 Opret projekt");
+        System.out.println("5 Exit");
+        System.out.print("Skriv 1-5: ");
     }
 
 }
