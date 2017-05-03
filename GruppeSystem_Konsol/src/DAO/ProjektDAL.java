@@ -53,7 +53,6 @@ public class ProjektDAL {
                     a.getNavn(), a.getDesc(), a.getGruppeNavn(), a.getAdminid()
             );
         }
-
     }
 
     public void updateProjekt(Projekt a, int personid) throws DALException {
