@@ -31,9 +31,10 @@ public interface ServerInterface {
    @WebMethod public boolean CreateAftale(Aftale a, int studienummer, int projektnummer)throws DALException;
    @WebMethod public boolean CreateOpgave(Opgave a, int studienummer, int projektnummer)throws DALException;
    @WebMethod public boolean CreateProjekt(Projekt a, int studienummer)throws DALException;
-   @WebMethod public boolean DeleteAftale(Aftale a, int studienummer, int projektnummer)throws DALException;
-   @WebMethod public boolean DeleteOpgave(Opgave a, int studienummer, int projektnummer)throws DALException;
+   @WebMethod public boolean DeleteAftale(int aftaleId, int studienummer, int projektnummer)throws DALException;
+   @WebMethod public boolean DeleteOpgave(int opgaveId, int studienummer, int projektnummer)throws DALException;
    @WebMethod public boolean DeleteProjekt(int projektId)throws DALException;
    @WebMethod public String fedtManSpa();
-   
+   @WebMethod public void AddMedlem(int studienummer, int projektid) throws DALException;
+   @WebMethod public void DeleteMedlem(int studienummer, int projektid) throws DALException;
 }

@@ -52,6 +52,18 @@ public class ProjektDAL {
                     "INSERT INTO projekt(projectname, projectdesc, groupname, adminid) VALUES (?,?,?,?)",
                     a.getNavn(), a.getDesc(), a.getGruppeNavn(), a.getAdminid()
             );
+            
+            ResultSet rs = Connector.doQuery("SELECT * FROM projekt WHERE projectname = ? AND adminid = =?", a.getNavn(), a.getAdminid());
+            try{
+            Connector.doUpdate
+		("INSERT INTO medlemmer(groupid, brugid) VALUES (?,?)",
+				rs.getInt("id"), a.getAdminid()
+				);
+            }
+            catch(SQLException e){
+                e.printStackTrace();
+            }
+            
         }
     }
 

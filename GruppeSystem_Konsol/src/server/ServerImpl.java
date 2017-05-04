@@ -12,6 +12,7 @@ import DTO.Projekt;
 import DAO.AftaleDAL;
 import DAO.BrugerDAL;
 import DAO.OpgaveDAL;
+import DAO.MedlemDAO;
 import DAO.ProjektDAL;
 import java.util.List;
 import DALException.DALException;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import javax.xml.ws.Service;
 import java.net.MalformedURLException;
 import java.net.URL;
+import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.namespace.QName;
 
@@ -39,6 +41,7 @@ public class ServerImpl implements ServerInterface{
     OpgaveDAL opgDal;
     ProjektDAL proDal;
     DriveTest drive;
+    MedlemDAO medDao;
     
     public ServerImpl(){
         aftDal = new AftaleDAL();
@@ -101,14 +104,14 @@ public class ServerImpl implements ServerInterface{
     }
     
     @Override
-    public boolean DeleteAftale(Aftale a, int studienummer, int projektnummer)throws DALException {
-        aftDal.DeleteAftale(a, projektnummer);
+    public boolean DeleteAftale(int aftaleId, int studienummer, int projektnummer)throws DALException {
+        aftDal.DeleteAftale(aftaleId, projektnummer);
         return true;
     }
 
     @Override
-    public boolean DeleteOpgave(Opgave a, int studienummer, int projektnummer) throws DALException{
-        opgDal.DeleteOpgave(a, projektnummer);
+    public boolean DeleteOpgave(int opgaveId, int studienummer, int projektnummer) throws DALException{
+        opgDal.DeleteOpgave(opgaveId, projektnummer);
         return true;
     }
 
@@ -121,5 +124,17 @@ public class ServerImpl implements ServerInterface{
     @Override
     public String fedtManSpa() {
        return "Spa";
+    }
+    
+    @Override
+    public void AddMedlem(int studienummer, int projektid) throws DALException{
+        if(studienummer > 99999 && studienummer < 1000000){
+            medDao.createMedlem(studienummer, projektid);
+        }
+    }
+    
+    @Override
+    public void DeleteMedlem(int studienummer, int projektid) throws DALException{
+        medDao.deleteMedlem(studienummer, projektid);
     }
 }
