@@ -25,7 +25,7 @@ public class GruppeSystem_Konsol {
 
     private int num;
     private int studienummer;
-    private boolean loggedIn, bool = false;
+    private boolean loggedIn, done = false;
     private DriveTest drive;
 
     public void start() throws MalformedURLException, DALException, IOException {
@@ -42,7 +42,7 @@ public class GruppeSystem_Konsol {
 
         System.out.println("Du skal logge ind");
 
-        while (true) {
+        while (!done) {
             while (!loggedIn) {
                 System.out.println("Indtast dit brugernavn (studie-nr.)");
                 String bruger = scanner.nextLine();
@@ -74,7 +74,7 @@ public class GruppeSystem_Konsol {
 
                         System.out.println("Her er alle dine projekter: ");
                         for (Projekt p : list) {
-                            System.out.print(p.getNavn() + ", ");
+                            System.out.print(p.getId() + " " + p.getNavn() + ", ");
                         }
                         System.out.println("");
                     } catch (Exception e) {
@@ -108,14 +108,14 @@ public class GruppeSystem_Konsol {
                     Scanner scanner2 = new Scanner(System.in);
                     System.out.print("Søg på drive: ");
                     String search = scanner2.nextLine();
-                    List<String> results = drive.driveMain(search);
-                    if (results.isEmpty()) {
+                    drive.driveMain(search);
+                   /* if (results.isEmpty()) {
                         System.out.println("Findes ikke");
                     } else {
                         for (String a : results) {
                             System.out.println(a + ", ");
                         }
-                    }
+                    }*/
                     break;
                 case 4:
                     System.out.println("Projekt Navn: ");
@@ -151,7 +151,7 @@ public class GruppeSystem_Konsol {
                     }
                     break;
                 case 6:
-                    loggedIn = false;
+                    done = true;
                     break;
                 default:
                     System.out.println("Ugyldigt");
@@ -174,7 +174,7 @@ public class GruppeSystem_Konsol {
         System.out.println("4 Opret projekt");
         System.out.println("5 Slet projekt");
         System.out.println("6 Exit");
-        System.out.print("Skriv 1-5: ");
+        System.out.print("Skriv 1-6: ");
     }
 
 }

@@ -53,7 +53,7 @@ public class ProjektDAL {
                     a.getNavn(), a.getDesc(), a.getGruppeNavn(), a.getAdminid()
             );
             
-            ResultSet rs = Connector.doQuery("SELECT * FROM projekt WHERE projectname = ? AND adminid = =?", a.getNavn(), a.getAdminid());
+            ResultSet rs = Connector.doQuery("SELECT * FROM projekt WHERE projectname = ? AND adminid = ?", a.getNavn(), a.getAdminid());
             try{
             Connector.doUpdate
 		("INSERT INTO medlemmer(groupid, brugid) VALUES (?,?)",
