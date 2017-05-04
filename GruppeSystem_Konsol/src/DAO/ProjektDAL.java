@@ -83,6 +83,18 @@ public class ProjektDAL {
             Connector.doUpdate(
                     "DELETE FROM projekt WHERE id = ?", projektId
             );
+            
+            Connector.doUpdate(
+                    "DELETE FROM aftale WHERE projektid = ?", projektId
+            );
+            
+            Connector.doUpdate(
+                    "DELETE FROM opgave WHERE projektid = ?", projektId
+            );
+            
+            Connector.doUpdate(
+                    "DELETE FROM opgave WHERE groupid = ?", projektId
+            );
         }
     }
 
