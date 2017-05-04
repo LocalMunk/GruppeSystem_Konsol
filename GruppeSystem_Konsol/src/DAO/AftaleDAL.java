@@ -25,7 +25,7 @@ public class AftaleDAL {
             if (!rs.first())
                 throw new DALException("aftalen" + id + "findes ikke");
             
-            return new Aftale(rs.getInt("id"), rs.getString("aftalename"), rs.getString("aftaledesc"), rs.getDate("tidspunkt"), rs.getString("lokation"));
+            return new Aftale(rs.getInt("id"), rs.getString("aftalename"), rs.getString("aftaledesc"), rs.getString("tidspunkt"), rs.getString("lokation"));
 	}catch (SQLException e){
             throw new DALException(e);
         }
@@ -37,7 +37,7 @@ public class AftaleDAL {
                 try{
                 while (rs.next())   
 			{
-				list.add(new Aftale(rs.getInt("id"), rs.getString("aftalename"), rs.getString("aftaledesc"), rs.getDate("tidspunkt"), rs.getString("lokation")));
+				list.add(new Aftale(rs.getInt("id"), rs.getString("aftalename"), rs.getString("aftaledesc"), rs.getString("tidspunkt"), rs.getString("lokation")));
 			}
 		}
 		catch (SQLException e) { throw new DALException(e); }

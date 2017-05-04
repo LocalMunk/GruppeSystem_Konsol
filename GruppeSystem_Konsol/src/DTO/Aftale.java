@@ -14,14 +14,16 @@ import java.util.ArrayList;
  */
 public class Aftale {
 
-    private Date tidspunkt;
+    private String tidspunkt;
     private String lokation;
     private int id;
     private String navn;
     private String beskrivelse;
     private ArrayList<Bruger> ansvarlige;   
 
-    public Aftale(int id, String navn, String beskrivelse, Date tidspunkt, String lokation) {
+    public Aftale(){
+    }
+    public Aftale(int id, String navn, String beskrivelse, String tidspunkt, String lokation) {
 
         this.tidspunkt = tidspunkt;
         this.lokation = lokation;
@@ -31,11 +33,11 @@ public class Aftale {
 
     }
 
-    public Date getTidspunkt() {
+    public String getTidspunkt() {
         return tidspunkt;
     }
 
-    public void setTidspunkt(Date tidspunkt) {
+    public void setTidspunkt(String tidspunkt) {
         this.tidspunkt = tidspunkt;
     }
 
