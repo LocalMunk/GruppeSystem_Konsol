@@ -109,13 +109,6 @@ public class GruppeSystem_Konsol {
                     System.out.print("Søg på drive: ");
                     String search = scanner2.nextLine();
                     drive.driveMain(search);
-                   /* if (results.isEmpty()) {
-                        System.out.println("Findes ikke");
-                    } else {
-                        for (String a : results) {
-                            System.out.println(a + ", ");
-                        }
-                    }*/
                     break;
                 case 4:
                     System.out.println("Projekt Navn: ");
