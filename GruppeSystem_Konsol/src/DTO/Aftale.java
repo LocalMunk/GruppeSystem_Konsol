@@ -5,9 +5,6 @@
  */
 package DTO;
 
-import java.sql.Date;
-import java.util.ArrayList;
-
 /**
  *
  * @author frederik
@@ -19,7 +16,6 @@ public class Aftale {
     private int id;
     private String navn;
     private String beskrivelse;
-    private ArrayList<Bruger> ansvarlige;   
 
     public Aftale(){
     }
@@ -72,13 +68,4 @@ public class Aftale {
     public void setBeskrivelse(String beskrivelse) {
         this.beskrivelse = beskrivelse;
     }
-
-    public ArrayList<Bruger> getAnsvarlige() {
-        return ansvarlige;
-    }
-
-    public void setAnsvarlige(ArrayList<Bruger> ansvarlige) {
-        this.ansvarlige = ansvarlige;
-    }
-
 }

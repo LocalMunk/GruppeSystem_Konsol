@@ -29,7 +29,7 @@ public class GruppeSystem_Konsol {
     private DriveTest drive;
 
     public void start() throws MalformedURLException, DALException, IOException {
-
+        
         drive = new DriveTest();
         //Opdater links
         URL url = new URL("http://ubuntu4.javabog.dk:12345/server?wsdl");
@@ -147,7 +147,7 @@ public class GruppeSystem_Konsol {
                     done = true;
                     break;
                 default:
-                    System.out.println("Ugyldigt");
+                    System.out.println("Ugyldigt");        
             }
             }catch(Exception e){
                 System.out.println("HEY KUN TAL TAK");

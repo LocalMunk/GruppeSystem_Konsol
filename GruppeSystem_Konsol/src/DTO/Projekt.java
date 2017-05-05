@@ -13,13 +13,11 @@ import java.io.Serializable;
  */
 public class Projekt implements  Serializable{
 
-    private static final long serialVersionUID = 12345;
     private int id;
     private String navn;
     private String desc;
     private String gruppeNavn;
     private int adminid;
-    private Kalender kalender;
 
     public Projekt(int id, String navn, String desc, String gruppeNavn, int adminid) {
         this.id = id;
@@ -28,13 +26,7 @@ public class Projekt implements  Serializable{
         this.gruppeNavn = gruppeNavn;
         this.adminid = adminid;
     }
- 
-    public Projekt(){
-        this.id = 1;
-        this.navn = "test";
-        this.desc = "testdesc";
-        this.gruppeNavn = "testloltest";
-        this.adminid = 154694;
+    public Projekt() {
     }
     
     public int getId() {
@@ -75,14 +67,6 @@ public class Projekt implements  Serializable{
     
     public void setAdminid(int adminid) {
     	this.adminid = adminid;
-    }
-
-    public Kalender getKalender() {
-        return kalender;
-    }
-
-    public void setKalender(Kalender kalender) {
-        this.kalender = kalender;
     }
 
 }

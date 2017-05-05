@@ -15,13 +15,11 @@ public class Gruppe {
 
     private String id;
     private String navn;
-    private ArrayList<Bruger> brugere;
     private Projekt projekt;
 
-    public Gruppe(String id, String navn, ArrayList<Bruger> brugere, Projekt projekt) {
+    public Gruppe(String id, String navn, Projekt projekt) {
         this.id = id;
         this.navn = navn;
-        this.brugere = brugere;
         this.projekt = projekt;
     }
 
@@ -39,14 +37,6 @@ public class Gruppe {
 
     public void setNavn(String navn) {
         this.navn = navn;
-    }
-
-    public ArrayList<Bruger> getBrugere() {
-        return brugere;
-    }
-
-    public void setBrugere(ArrayList<Bruger> brugere) {
-        this.brugere = brugere;
     }
 
     public Projekt getProjekt() {

@@ -46,11 +46,11 @@ public class AftaleDAL {
     
     public void createAftale(Aftale a, int projektid) throws DALException{
         {
-		Connector.doUpdate
-		(
+		Connector.doUpdate(
 			"INSERT INTO aftale(projektid, aftalename, aftaledesc, tidspunkt, lokation) VALUES (?,?,?,?,?)",
 				projektid, a.getNavn(), a.getBeskrivelse(), a.getTidspunkt(), a.getLokation()
 				);
+            
 	}
         
     }
