@@ -91,10 +91,6 @@ public class ProjektDAL {
             Connector.doUpdate(
                     "DELETE FROM opgave WHERE projektid = ?", projektId
             );
-            
-            Connector.doUpdate(
-                    "DELETE FROM opgave WHERE groupid = ?", projektId
-            );
         }
     }
 

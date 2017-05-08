@@ -24,6 +24,7 @@ import java.io.IOException;
 import javax.xml.ws.Service;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.namespace.QName;
@@ -101,6 +102,10 @@ public class ServerImpl implements ServerInterface{
     @Override
     public boolean CreateProjekt(Projekt a, int studienummer) throws DALException{
         proDal.createProjekt(a);
+        
+        List<Projekt> list = proDal.getProjektList(studienummer);
+        
+        medDao.createMedlem(list.get(list.size() - 1).getAdminid(), list.get(list.size() - 1).getId());
         return true;
     }
     
