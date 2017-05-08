@@ -49,6 +49,7 @@ public class ServerImpl implements ServerInterface{
         opgDal = new OpgaveDAL();
         proDal = new ProjektDAL();
         drive = new DriveTest();
+        medDao = new MedlemDAO();
     }
 
     @Override
@@ -128,9 +129,7 @@ public class ServerImpl implements ServerInterface{
     
     @Override
     public void AddMedlem(int studienummer, int projektid) throws DALException{
-        if(studienummer > 99999 && studienummer < 1000000){
-            medDao.createMedlem(studienummer, projektid);
-        }
+        medDao.createMedlem(studienummer, projektid);
     }
     
     @Override
