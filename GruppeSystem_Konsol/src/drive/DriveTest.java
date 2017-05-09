@@ -117,7 +117,7 @@ public class DriveTest {
                 .build();
     }
 
-    //Takes in a file name and the path to the file and returns a 0 on succesfull upload
+    //Takes in a file name and the path to the file and the drive to which it uploads and returns a 0 on succesfull upload
     public int upload(String filename, String filepath, Drive service) throws IOException{
         File fileMetadata = new File();
         fileMetadata.setName(filename);
@@ -129,6 +129,31 @@ public class DriveTest {
             .setFields("id")
             .execute();
         System.out.println("File ID: " + file.getId());
+        return 0;
+    }
+
+    //Takes in the drive, file id and an output stream, writes the file to the output stream and returns 0 on succesfull download
+    public int download(Drive service, String fileId, String filePath, OutputStream output) throws IOException{
+        File file = new File(filePath);
+
+		try (FileOutputStream fop = new FileOutputStream(file)) {
+
+			// if file doesn't exists, then create it
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+
+            service.files().get(fileId).executeMediaAndDownloadTo(fop);
+			fop.write();
+			fop.flush();
+			fop.close();
+
+			System.out.println("Done");
+
+		} catch (IOException e) {
+			e.printStackTrace();
+            return 1;
+		}
         return 0;
     }
 
