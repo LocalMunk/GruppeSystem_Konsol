@@ -45,6 +45,19 @@ public class ProjektDAL {
         }
         return list;
     }
+    
+    public List<Projekt> getProjektListFromAdminId(int personid) throws DALException {
+        List<Projekt> list = new ArrayList<Projekt>();
+        ResultSet rs = Connector.doQuery("SELECT * FROM projekt WHERE adminid = ?", personid);
+        try {
+            while (rs.next()) {
+                list.add(new Projekt(rs.getInt("id"), rs.getString("projectname"), rs.getString("projectdesc"), rs.getString("groupname"), rs.getInt("adminid")));
+            }
+        } catch (SQLException e) {
+            throw new DALException(e);
+        }
+        return list;
+    }
 
     public void createProjekt(Projekt a) throws DALException {
         {
@@ -52,18 +65,6 @@ public class ProjektDAL {
                     "INSERT INTO projekt(projectname, projectdesc, groupname, adminid) VALUES (?,?,?,?)",
                     a.getNavn(), a.getDesc(), a.getGruppeNavn(), a.getAdminid()
             );
-            
-            ResultSet rs = Connector.doQuery("SELECT * FROM projekt WHERE projectname = ? AND adminid = ?", a.getNavn(), a.getAdminid());
-            try{
-            Connector.doUpdate
-		("INSERT INTO medlemmer(groupid, brugid) VALUES (?,?)",
-				rs.getInt("id"), a.getAdminid()
-				);
-            }
-            catch(SQLException e){
-                e.printStackTrace();
-            }
-            
         }
     }
 
