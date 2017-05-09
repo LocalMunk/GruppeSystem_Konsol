@@ -118,14 +118,14 @@ public class DriveTest {
     }
 
     //Takes in a file name and the path to the file and returns a 0 on succesfull upload
-    public int upload(String filename, String filepath) throws IOException{
+    public int upload(String filename, String filepath, Drive service) throws IOException{
         File fileMetadata = new File();
         fileMetadata.setName(filename);
         java.io.File filePath = new java.io.File(filepath);
         String type = new MimetypesFileTypeMap().getContentType(filePath);
         System.out.println(type);
         FileContent mediaContent = new FileContent(type, filePath);
-        File file = driveService.files().create(fileMetadata, mediaContent)
+        File file = service.files().create(fileMetadata, mediaContent)
             .setFields("id")
             .execute();
         System.out.println("File ID: " + file.getId());
