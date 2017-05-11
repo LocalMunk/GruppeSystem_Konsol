@@ -6,6 +6,7 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.FileContent;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.json.JsonFactory;
@@ -14,17 +15,19 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.*;
 import com.google.api.services.drive.Drive;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 import javax.activation.MimetypesFileTypeMap;
-import java.io.File;
 
 public class DriveTest {
 
@@ -63,7 +66,7 @@ public class DriveTest {
      * ~/.credentials/drive-java-quickstart
      */
     private static final List<String> SCOPES
-            = Arrays.asList(DriveScopes.DRIVE_METADATA_READONLY);
+            = Arrays.asList(DriveScopes.DRIVE);
 
     static {
         try {
@@ -85,17 +88,21 @@ public class DriveTest {
         // Load client secrets.
         InputStream in
                 = DriveTest.class.getResourceAsStream("/drive/client_secret3.json");
-        
+
         GoogleClientSecrets clientSecrets
                 = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-
+  GoogleAuthorizationCodeFlow flow;
         // Build flow and trigger user authorization request.
-        GoogleAuthorizationCodeFlow flow
+     
+       flow
                 = new GoogleAuthorizationCodeFlow.Builder(
                         HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
                         .setDataStoreFactory(DATA_STORE_FACTORY)
                         .setAccessType("offline")
                         .build();
+       
+       
+           
         Credential credential = new AuthorizationCodeInstalledApp(
                 flow, new LocalServerReceiver()).authorize("user");
         System.out.println(
@@ -117,47 +124,22 @@ public class DriveTest {
                 .build();
     }
 
-    //Takes in a file name and the path to the file and the drive to which it uploads and returns a 0 on succesfull upload
-    public int upload(String filename, String filepath, Drive service) throws IOException{
+    //Takes in a file name and the path to the file and returns a 0 on succesfull upload
+    public int upload(String filename, String filepath) throws IOException {
         File fileMetadata = new File();
         fileMetadata.setName(filename);
         java.io.File filePath = new java.io.File(filepath);
         String type = new MimetypesFileTypeMap().getContentType(filePath);
         System.out.println(type);
         FileContent mediaContent = new FileContent(type, filePath);
-        File file = service.files().create(fileMetadata, mediaContent)
-            .setFields("id")
-            .execute();
+        File file = getDriveService().files().create(fileMetadata, mediaContent)
+                .setFields("id")
+                .execute();
         System.out.println("File ID: " + file.getId());
         return 0;
     }
 
-    //Takes in the drive, file id and an output stream, writes the file to the output stream and returns 0 on succesfull download
-    public int download(Drive service, String fileId, String filePath, OutputStream output) throws IOException{
-        File file = new File(filePath);
-
-		try (FileOutputStream fop = new FileOutputStream(file)) {
-
-			// if file doesn't exists, then create it
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-
-            service.files().get(fileId).executeMediaAndDownloadTo(fop);
-			fop.write();
-			fop.flush();
-			fop.close();
-
-			System.out.println("Done");
-
-		} catch (IOException e) {
-			e.printStackTrace();
-            return 1;
-		}
-        return 0;
-    }
-
-    public ArrayList<String> driveMain (String search) throws IOException {
+    public ArrayList<String> driveMain(String search) throws IOException {
         // Build a new authorized API client service.
         Drive service = getDriveService();
 
@@ -165,7 +147,7 @@ public class DriveTest {
         List<String> results = new ArrayList<String>();
         System.out.println("Søg på dit drive");
         String query = "name contains '" + search + "'";
-           //String query= "fullText contains 'java' and 'frederik_buur@hotmail.com' in writers";
+        //String query= "fullText contains 'java' and 'frederik_buur@hotmail.com' in writers";
         //System.out.println(query);
         FileList result = service.files().list().setQ(query).
                 setSupportsTeamDrives(Boolean.TRUE).setSpaces("drive").setFields("nextPageToken, files(id, name)")
@@ -180,10 +162,9 @@ public class DriveTest {
             for (File file : files) {
                 System.out.println(file.getName());
                 results.add(file.getName());
-                
-                
+
             }
         }
-    return (ArrayList<String>) results;
+        return (ArrayList<String>) results;
     }
 }

@@ -29,9 +29,9 @@ public class GruppeSystem_Konsol {
     private DriveTest drive;
 
     public void start() throws MalformedURLException, DALException, IOException {
-        
+
         drive = new DriveTest();
-        //Opdater links
+        
         URL url = new URL("http://ubuntu4.javabog.dk:12345/server?wsdl");
         QName qname = new QName("http://server/", "ServerImplService");
         Service service = Service.create(url, qname);
@@ -63,96 +63,110 @@ public class GruppeSystem_Konsol {
             }
 
             menu();
-            try{
-            num = scanner.nextInt();
+            try {
+                num = scanner.nextInt();
 
-            switch (num) {
-                case 1:
-                    List<Projekt> list = null;
-                    try {
-                        list = ISrv.getProjekter(studienummer);
+                switch (num) {
+                    case 1:
+                        List<Projekt> list = null;
+                        try {
+                            list = ISrv.getProjekter(studienummer);
 
-                        System.out.println("Her er alle dine projekter: ");
-                        for (Projekt p : list) {
-                            System.out.print(p.getId() + " " + p.getNavn() + ", ");
+                            System.out.println("Her er alle dine projekter: ");
+                            for (Projekt p : list) {
+                                System.out.print(p.getId() + " " + p.getNavn() + ", ");
+                            }
+                            System.out.println("");
+                        } catch (Exception e) {
+                            //e.printStackTrace();
+                            System.out.println("findes ingen projekter");
                         }
-                        System.out.println("");
-                    } catch (Exception e) {
-                        //e.printStackTrace();
-                        System.out.println("findes ingen projekter");
-                    }
-                    break;
-                case 2:
-                    System.out.println(studienummer);
-                    System.out.println("Her er alle dine aftaler & opgaver");
-                    List<Projekt> list2 = ISrv.getProjekter(studienummer);
-                    for (Projekt p : list2) {
-                        System.out.println("- " + p.getNavn() + ":");
-                        //printer opgaver 
-                        List<Opgave> listO = ISrv.getOpgaver(p.getId(), studienummer);
-                        System.out.print("Opgaver: ");
-                        for (Opgave o : listO) {
-                            System.out.print(o.getNavn() + ", ");
+                        break;
+                    case 2:
+                        System.out.println(studienummer);
+                        System.out.println("Her er alle dine aftaler & opgaver");
+                        List<Projekt> list2 = ISrv.getProjekter(studienummer);
+                        for (Projekt p : list2) {
+                            System.out.println("- " + p.getNavn() + ":");
+                            //printer opgaver 
+                            List<Opgave> listO = ISrv.getOpgaver(p.getId(), studienummer);
+                            System.out.print("Opgaver: ");
+                            for (Opgave o : listO) {
+                                System.out.print(o.getNavn() + ", ");
+                            }
+                            System.out.println("");
+                            //printer aftaler
+                            List<Aftale> listA = ISrv.getAftaler(p.getId(), studienummer);
+                            System.out.print("Aftaler: ");
+                            for (Aftale a : listA) {
+                                System.out.print(a.getNavn() + ", ");
+                            }
+                            System.out.println("");
                         }
-                        System.out.println("");
-                        //printer aftaler
-                        List<Aftale> listA = ISrv.getAftaler(p.getId(), studienummer);
-                        System.out.print("Aftaler: ");
-                        for (Aftale a : listA) {
-                            System.out.print(a.getNavn() + ", ");
+                        break;
+                    case 3:
+                        Scanner scanner2 = new Scanner(System.in);
+                        System.out.print("Søg på drive: ");
+                        String search = scanner2.nextLine();
+                        drive.driveMain(search);
+                        break;
+                    case 4:
+                        System.out.println("Projekt Navn: ");
+                        scanner.nextLine();
+                        String navn = scanner.nextLine();
+
+                        System.out.println("Beskrivelse: ");
+                        String beskrivelse = scanner.nextLine();
+
+                        System.out.println("Gruppe navn");
+                        String grpNavn = scanner.nextLine();
+
+                        System.out.println("det her: navn = " + navn + " besk = "
+                                + beskrivelse + " grpnavn = " + grpNavn);
+                        try {
+                            ISrv.CreateProjekt(new Projekt(0, navn, beskrivelse, grpNavn, studienummer), studienummer);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("Kunne ikke oprette projekt");
                         }
-                        System.out.println("");
-                    }
-                    break;
-                case 3:
-                    Scanner scanner2 = new Scanner(System.in);
-                    System.out.print("Søg på drive: ");
-                    String search = scanner2.nextLine();
-                    drive.driveMain(search);
-                    break;
-                case 4:
-                    System.out.println("Projekt Navn: ");
-                    scanner.nextLine();
-                    String navn = scanner.nextLine();
-                    
-                    System.out.println("Beskrivelse: ");
-                    String beskrivelse = scanner.nextLine();
-                    
-                    System.out.println("Gruppe navn");
-                    String grpNavn = scanner.nextLine();
-                    
-                    System.out.println("det her: navn = " + navn + " besk = " 
-                            + beskrivelse + " grpnavn = " + grpNavn);
-                    try {
-                        ISrv.CreateProjekt(new Projekt(0, navn, beskrivelse, grpNavn, studienummer), studienummer);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        System.out.println("Kunne ikke oprette projekt");
-                    }
-                    
-                    break;
-                case 5:
-                    System.out.println("Skriv id på projekt du vil slette: ");
-                    int projektId;
-                    
-                    try {
-                        projektId = scanner.nextInt();
-                        ISrv.DeleteProjekt(projektId);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        System.out.println("Ugyldigt id");
-                    }
-                    break;
-                case 6:
-                    done = true;
-                    break;
-                default:
-                    System.out.println("Ugyldigt");        
-            }
-            }catch(Exception e){
+
+                        break;
+                    case 5:
+                        System.out.println("Skriv id på projekt du vil slette: ");
+                        int projektId;
+
+                        try {
+                            projektId = scanner.nextInt();
+                            ISrv.DeleteProjekt(projektId);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("Ugyldigt id");
+                        }
+                        break;
+                    case 6:
+                        Scanner scanner3 = new Scanner(System.in);
+                        System.out.println("Skriv navn på fil du vil uploade: ");
+                        String filNavn = scanner3.nextLine();
+
+                        System.out.println("Skriv sti på fil du vil uploade(brug \\): ");
+                        String sti = scanner3.nextLine();
+                        try {
+                            drive.upload(filNavn, sti);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("Noget gik galt under uploade");
+                        }
+                        break;
+                    case 7: 
+                        done = true;
+                        break;
+                    default:
+                        System.out.println("Ugyldigt");
+                }
+            } catch (Exception e) {
                 System.out.println("HEY KUN TAL TAK");
                 scanner.next();
-                
+
             }
         }
     }
@@ -166,8 +180,9 @@ public class GruppeSystem_Konsol {
         System.out.println("3 Brug drive");
         System.out.println("4 Opret projekt");
         System.out.println("5 Slet projekt");
-        System.out.println("6 Exit");
-        System.out.print("Skriv 1-6: ");
+        System.out.println("6 Uploade fil til docs");
+        System.out.println("7 Exit");
+        System.out.print("Skriv 1-7: ");
     }
 
 }
